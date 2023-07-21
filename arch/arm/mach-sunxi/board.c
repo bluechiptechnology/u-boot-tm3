@@ -74,6 +74,24 @@ phys_size_t board_get_usable_ram_top(phys_size_t total_size)
 }
 #endif /* CONFIG_ARM64 */
 
+static int sunxi_gpio_output(u32 pin, u32 val)
+{
+       u32 dat;
+       u32 bank = GPIO_BANK(pin);
+       u32 num = GPIO_NUM(pin);
+       struct sunxi_gpio *pio = BANK_TO_GPIO(bank);
+
+       dat = readl(&pio->dat);
+       if (val)
+               dat |= 0x1 << num;
+       else
+               dat &= ~(0x1 << num);
+
+     writel(dat, &pio->dat);
+
+       return 0;
+}
+
 #ifdef CONFIG_SPL_BUILD
 static int gpio_init(void)
 {
@@ -182,6 +200,11 @@ static int gpio_init(void)
 	val = readl(SUNXI_R_PIO_BASE + SUN50I_H6_GPIO_POW_MOD_VAL);
 	writel(val, SUNXI_R_PIO_BASE + SUN50I_H6_GPIO_POW_MOD_SEL);
 #endif
+
+
+
+       sunxi_gpio_set_cfgpin(SUNXI_GPD(20), SUNXI_GPIO_OUTPUT);
+       sunxi_gpio_output(SUNXI_GPD(20), 1);
 
 	return 0;
 }
