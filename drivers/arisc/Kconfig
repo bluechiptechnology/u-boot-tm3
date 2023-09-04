@@ -1,0 +1,8 @@
+menu "ARISC enabler"
+
+config ARISCMOD
+	bool "Enable starting of ARISC"
+	help
+	  Enables starting ARISC chip on H6 SoC
+
+endmenu

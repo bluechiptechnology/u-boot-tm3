@@ -45,6 +45,10 @@
 		regulator-min-microvolt = <1135000>;
 		regulator-max-microvolt = <1135000>;
 	};
+
+	arisc {
+		compatible = "arisc";
+	};
 };
 
 &cpu0 {

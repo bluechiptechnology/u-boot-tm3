@@ -34,6 +34,7 @@ enum uclass_id {
 	UCLASS_ACPI_PMC,	/* (x86) Power-management controller (PMC) */
 	UCLASS_ADC,		/* Analog-to-digital converter */
 	UCLASS_AHCI,		/* SATA disk controller */
+	UCLASS_ARISC,
 	UCLASS_AUDIO_CODEC,	/* Audio codec with control and data path */
 	UCLASS_AXI,		/* AXI bus */
 	UCLASS_BLK,		/* Block device */

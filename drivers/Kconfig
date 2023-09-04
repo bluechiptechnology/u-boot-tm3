@@ -6,6 +6,8 @@ source "drivers/core/Kconfig"
 
 source "drivers/adc/Kconfig"
 
+source "drivers/arisc/Kconfig"
+
 source "drivers/ata/Kconfig"
 
 source "drivers/axi/Kconfig"
