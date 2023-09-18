@@ -47,7 +47,6 @@ int arm_svc_arisc_startup(ulong cfg_base)
 
 static int arisc_probe(struct udevice *dev)
 {
-	const struct dm_demo_pdata *pdata = dev_get_plat(dev);
 	sunxi_deassert_arisc();
 
 	dts_cfg_64.space.msgpool_dst = 0x48105000;
