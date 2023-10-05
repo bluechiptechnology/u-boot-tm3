@@ -10,7 +10,7 @@
 
 / {
 	model = "BCT TM3";
-	compatible = "oranth,tanix-tx6", "allwinner,sun50i-h6";
+	compatible = "bct,tm3", "allwinner,sun50i-h6";
 
 	aliases {
 		serial0 = &uart0;
@@ -135,13 +135,13 @@
 				regulator-always-on;
 				regulator-min-microvolt = <3300000>;
 				regulator-max-microvolt = <3300000>;
-				regulator-name = "vcc-pl";
+				regulator-name = "vcc-usb";
 			};
 
 			reg_aldo2: aldo2 {
 				regulator-min-microvolt = <3300000>;
 				regulator-max-microvolt = <3300000>;
-				regulator-name = "vcc-ac200";
+				regulator-name = "vcc-wifi";
 				regulator-enable-ramp-delay = <100000>;
 			};
 
@@ -150,28 +150,28 @@
 				regulator-always-on;
 				regulator-min-microvolt = <3300000>;
 				regulator-max-microvolt = <3300000>;
-				regulator-name = "vcc-3v3-1";
+				regulator-name = "aldo3";
 			};
 
 			reg_bldo1: bldo1 {
 				regulator-always-on;
 				regulator-min-microvolt = <1800000>;
 				regulator-max-microvolt = <1800000>;
-				regulator-name = "vcc-bias-pll";
+				regulator-name = "bldo1";
 			};
 
 			reg_bldo2: bldo2 {
 				regulator-always-on;
 				regulator-min-microvolt = <1800000>;
 				regulator-max-microvolt = <1800000>;
-				regulator-name = "vcc-efuse-pcie-hdmi-io";
+				regulator-name = "bldo2";
 			};
 
 			reg_bldo3: bldo3 {
 				regulator-always-on;
 				regulator-min-microvolt = <1800000>;
 				regulator-max-microvolt = <1800000>;
-				regulator-name = "vcc-dcxoio";
+				regulator-name = "bldo3";
 			};
 
 			bldo4 {
@@ -183,19 +183,19 @@
 				regulator-always-on;
 				regulator-min-microvolt = <3300000>;
 				regulator-max-microvolt = <3300000>;
-				regulator-name = "vcc-3v3-2";
+				regulator-name = "cldo1";
 			};
 
 			reg_cldo2: cldo2 {
 				regulator-min-microvolt = <3300000>;
 				regulator-max-microvolt = <3300000>;
-				regulator-name = "vcc-wifi-1";
+				regulator-name = "cldo2";
 			};
 
 			reg_cldo3: cldo3 {
 				regulator-min-microvolt = <3300000>;
 				regulator-max-microvolt = <3300000>;
-				regulator-name = "vcc-wifi-2";
+				regulator-name = "cldo3";
 			};
 
 			reg_dcdca: dcdca {
@@ -203,7 +203,7 @@
 				regulator-min-microvolt = <810000>;
 				regulator-max-microvolt = <1160000>;
 				regulator-ramp-delay = <2500>;
-				regulator-name = "vdd-cpu";
+				regulator-name = "dcdca";
 			};
 
 			reg_dcdcc: dcdcc {
@@ -211,21 +211,21 @@
 				regulator-min-microvolt = <810000>;
 				regulator-max-microvolt = <1080000>;
 				regulator-ramp-delay = <2500>;
-				regulator-name = "vdd-gpu";
+				regulator-name = "dcdcc";
 			};
 
 			reg_dcdcd: dcdcd {
 				regulator-always-on;
 				regulator-min-microvolt = <960000>;
 				regulator-max-microvolt = <960000>;
-				regulator-name = "vdd-sys";
+				regulator-name = "dcdcd";
 			};
 
 			reg_dcdce: dcdce {
 				regulator-always-on;
 				regulator-min-microvolt = <1200000>;
 				regulator-max-microvolt = <1200000>;
-				regulator-name = "vcc-dram";
+				regulator-name = "dcdce";
 			};
 
 			sw {
@@ -241,12 +241,6 @@
 		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
 		#clock-cells = <0>;
 	};
-};
-
-
-&r_ir {
-	linux,rc-map-name = "rc-tanix-tx5max";
-	status = "okay";
 };
 
 &uart0 {
@@ -268,4 +262,7 @@
 	status = "okay";
 };
 
+&i2c0 {
+	status = "okay";
+};
 
