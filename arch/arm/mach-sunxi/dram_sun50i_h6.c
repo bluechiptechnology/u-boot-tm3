@@ -611,23 +611,27 @@ static void mctl_auto_detect_dram_size(struct dram_para *para)
 	para->rows = 18;
 	mctl_core_init(para);
 
-	for (para->rows = 13; para->rows < 18; para->rows++) {
-		/* 8 banks, 8 bit per byte and 16/32 bit width */
+	/*for (para->rows = 13; para->rows < 18; para->rows++) {
+		// 8 banks, 8 bit per byte and 16/32 bit width 
 		if (mctl_mem_matches((1 << (para->rows + para->cols +
 					    4 + para->bus_full_width))))
 			break;
-	}
+	}*/
+
+	para->rows = 15;
 
 	/* detect column address bits */
 	para->cols = 11;
 	mctl_core_init(para);
 
-	for (para->cols = 8; para->cols < 11; para->cols++) {
-		/* 8 bits per byte and 16/32 bit width */
+	/*for (para->cols = 8; para->cols < 11; para->cols++) {
+		// 8 bits per byte and 16/32 bit width
 		if (mctl_mem_matches(1 << (para->cols + 1 +
 					   para->bus_full_width)))
 			break;
-	}
+	}*/
+
+	para->cols = 10;
 }
 
 unsigned long mctl_calc_size(struct dram_para *para)
@@ -687,6 +691,7 @@ unsigned long sunxi_dram_init(void)
 	clrbits_le32(&prcm->ohms240, 0x3f);
 
 	mctl_auto_detect_rank_width(&para);
+
 	mctl_auto_detect_dram_size(&para);
 
 	mctl_core_init(&para);
